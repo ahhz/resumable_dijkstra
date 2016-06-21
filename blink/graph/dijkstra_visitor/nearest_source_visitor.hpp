@@ -19,7 +19,7 @@
 #define BLINK_GRAPH_DIJKSTRA_VISITOR_NEAREST_SOURCE_VISITOR_HPP
 
 #include <blink/graph/property_maps/vertex_property_map_helper.hpp>
-
+#include <boost/tuple/tuple.hpp> //tie
 #include <boost/graph/dijkstra_shortest_paths.hpp>
 #include <boost/graph/properties.hpp>
 #include <boost/property_map/property_map.hpp>
@@ -37,7 +37,7 @@ struct nearest_source_visitor : public boost::default_dijkstra_visitor
   void init_map(const Graph& g) 
   {
     typename boost::graph_traits<Graph>::vertex_iterator ui, ui_end;
-    for (tie(ui, ui_end) = vertices(g); ui != ui_end; ++ui) {
+    for (boost::tie(ui, ui_end) = vertices(g); ui != ui_end; ++ui) {
       put(m_nearest_source_map, *ui, *ui);
     }
   }
